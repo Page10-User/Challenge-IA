@@ -1,0 +1,9 @@
+# Entorno virtual
+.venv/
+
+# Cachés de Python y pytest
+__pycache__/
+.pytest_cache/
+
+# Datos de ejecución (NO se versionan; la DB se crea al correr la app)
+data/reservas.db
