@@ -43,14 +43,9 @@ Estas reglas salen de la consigna. Si hay conflicto, manda `docs/challenge-agent
 Los intervalos son **semiabiertos: `[inicio, fin)`**. Dos intervalos se superponen si y solo si `inicio_a < fin_b` **y** `inicio_b < fin_a`. Por eso 10:00–11:00 y 11:00–12:00 **no** se superponen.
 Esta regla debe existir en **un solo lugar** del código y estar cubierta por tests de borde. Cualquier cambio a esta convención requiere decisión humana registrada en `DECISIONS.md`.
 
-### Decisiones pendientes (no suponer: proponer opciones y preguntar)
+### Decisiones resueltas
 
-- `PENDIENTE` Zona horaria y formato de fechas de entrada/salida.
-- `PENDIENTE` Tratamiento de reservas en el pasado.
-- `PENDIENTE` Límites de duración mínima/máxima y de anticipación máxima.
-- `PENDIENTE` Interfaz: consola (subcomandos) o API local.
-
-Cuando el humano decida, mover cada ítem a `docs/SPEC.md` y a `DECISIONS.md`, y borrarlo de esta lista.
+La interfaz, el formato de fechas/horario, el tratamiento de reservas en el pasado y los límites de duración/anticipación fueron resueltos por el humano (2026-10-26) y están documentados en `docs/SPEC.md` (v1.0) y `DECISIONS.md` (D1–D4). Toda nueva decisión de dominio se registra ahí antes de que exista código. Si una decisión vuelve a volverse ambigua, reabrir el ítem con opciones y preguntar.
 
 ---
 
@@ -89,6 +84,7 @@ TP - Challenge/
 ├── DECISIONS.md           # decisiones y alternativas (versionado)
 ├── TOOLING.md             # evaluación de herramientas
 ├── .gitignore
+├── .engram/config.json    # clave del proyecto en Engram (memoria persistente)
 ├── requirements.txt
 ├── docs/
 │   ├── challenge-agents.md    # consigna (no editar)
@@ -119,6 +115,7 @@ Reglas de estructura:
 - Lógica de negocio separada de la interfaz y de la persistencia.
 - No crear archivos o carpetas fuera de esta estructura sin avisar.
 - `data/reservas.db`, `.venv/`, `__pycache__/`, `.pytest_cache/` van en `.gitignore`.
+- La memoria persistente de agentes (Engram) usa la clave de proyecto `tp - challenge`, fijada por `.engram/config.json` (versionado). No renombrar la clave sin decisión registrada: la historia de memoria vive bajo ese nombre.
 
 ---
 
@@ -233,4 +230,4 @@ Este archivo es parte de la evidencia del trabajo (preparación del agente). Cad
 
 | Fecha | Cambio | Motivo |
 |---|---|---|
-| _(se completa durante el trabajo)_ | | |
+| 2026-10-26 | Se agrega `.engram/config.json` al árbol y una nota sobre la clave de Engram | Tras `git init`, Engram resolvía el proyecto por remoto (`challenge-ia`) en conflicto con la historia existente bajo `tp - challenge`; se fija la clave canónica y se versiona la referencia |
