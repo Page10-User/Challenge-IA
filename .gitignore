@@ -7,3 +7,8 @@ __pycache__/
 
 # Datos de ejecución (NO se versionan; la DB se crea al correr la app)
 data/reservas.db
+
+# Artifacts locales autogenerados / notas internas del humano
+.atl/
+op-interno/
+
