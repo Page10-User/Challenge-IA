@@ -32,4 +32,12 @@ Progreso por tarea según `AGENTS.md` §7. Fechas en hora local; hashes nuevos t
 - Archivos tocados: `.venv/` (ignorado), `requirements.txt`, `data/inventory.json`, `src/reservas/__init__.py`, `README.md`, `PROGRESS.md`, `docs/evidence/verification-log.md`.
 - Verificación (comando → resultado): `py --version` → Python 3.12.2; `.venv\Scripts\python.exe -m pip install pytest --quiet` → instalado; `.venv\Scripts\python.exe -m pytest --version` → pytest 9.2.0; `python -m pytest` aún sin tests (pendiente Fase 4: primer rojo).
 - Pendiente: Fase 4 — `tests/test_rules.py` (rojo) → implementación `rules.py`.
+- Commit: `97edac4` (chore setup) y `a768753` (docs), aprobados y enviados por el humano.
+
+## 2026-10-29 — Reglas de negocio con TDD (Fase 4a)
+- Objetivo / requisito: RG-01…RG-08 en un solo lugar del código y cubiertas por tests de borde (AGENTS.md §3, SPEC RF-04/RF-05, D0/D4); errores propios con mensajes claros (AGENTS.md §11).
+- Qué se hizo: TDD completo — se escribió `tests/test_rules.py` (31 casos) contra el contrato de SPEC y se ejecutó **rojo** (ImportError, módulo inexistente); luego se implementó `src/reservas/rules.py` (única función `intervals_overlap`, parse estricto de D2, validaciones en orden estable con reloj inyectado D3) y se volvió a ejecutar el mismo run.
+- Archivos tocados: `tests/conftest.py`, `tests/test_rules.py`, `src/reservas/rules.py`.
+- Verificación (comando → resultado): rojo `collected 0 items / 1 error` (ImportError) → verde `31 passed in 0.11s` (pytest 9.2.0, Python 3.12.2). Verificación manual adicional del humano con pytest global 8.4.2: `31 passed in 0.14s`. Detalle en `docs/evidence/verification-log.md`.
+- Pendiente: Fase 4b — service (reservar/cancelar/disponibilidad), repository (SQLite), tests de service/persistence, CLI.
 - Commit: (pendiente de aprobación del humano).

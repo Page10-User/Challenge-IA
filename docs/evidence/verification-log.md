@@ -29,3 +29,6 @@ Consolidado: fechas en hora local del sistema (UTC-3). Los hashes citados corres
 | 28-10 | (A) | `py -m venv .venv` | OK: entorno virtual creado en el repo. |
 | 28-10 | (A) | `.venv\Scripts\python.exe -m pip install pytest --quiet` | OK: pytest 9.2.0 (pip 24.0). Aviso de release de pip más nuevo, no accionado (no es requerido). |
 | 28-10 | (A) | `.venv\Scripts\python.exe -m pytest --version` | OK: pytest 9.2.0 (sin tests todavía: Fase 4 pendiente). |
+| 29-10 | (A) | `pytest tests/test_rules.py -v` (antes de implementar `src/reservas/rules.py`) | **FALLO esperado (rojo TDD)**: `collected 0 items / 1 error` — ImportError de `reservas.rules` inexistente. |
+| 29-10 | (A) | `pytest tests/test_rules.py -v` (tras implementar `src/reservas/rules.py`) | OK: `31 passed in 0.11s` — RG-01…RG-08, bordes de D0/D4 y errores propios con mensajes claros. |
+| 29-10 | (H) | `pytest .\test_rules.py -v` (pytest global 8.4.2, fuera del venv) | OK: `31 passed in 0.14s` — verificación manual independiente en otro entorno (pinned venv: 9.2.0). Evidencia: `op-interno/Prueba pytest test_rules — 29-10-2026.txt` (sin versionar). |
