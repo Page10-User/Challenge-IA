@@ -37,3 +37,12 @@ Consolidado: fechas en hora local del sistema (UTC-3). Los hashes citados corres
 | 29-10 | (A) | `pytest tests/test_persistence.py -v` | OK: `2 passed in 0.11s` — prueba 7 del challenge (activas y canceladas sobreviven al reinicio). |
 | 30-10 | (H) | `pytest -v .\test_persistence.py .\test_service.py` (pytest global 8.4.2, fuera del venv) | OK: `11 passed in 0.16s` — verificación manual independiente. Evidencia: `op-interno/Prueba pytest test_persistence & service - 30-10-2026.txt` (sin versionar). |
 | 30-10 | (H) | `pytest -v .\tests\test_persistence.py .\tests\test_service.py` (venv, pytest 9.2.0) | OK: `11 passed in 0.14s` — misma suite en el entorno pinned. Evidencia: mismo archivo. |
+| 30-10 | (A) | `pytest tests/test_cli.py -q` (antes de implementar cli) | **FALLO esperado (rojo TDD)**: ImportError de `reservas.cli`. |
+| 30-10 | (A) | `pytest tests/ -v` (tras implementar cli.py + \_\_main\_\_.py) | OK: `49 passed in 0.33s` (42 previos + 7 CLI). |
+| 30-10 | (A) | `python -m reservas ...` (smoke del entry point real) | **FALLO**: `No module named reservas` — src-layout sin instalar: la consola no encuentra el paquete por path (los tests solo pasan por inyección de `conftest.py`). |
+| 30-10 | (A) | `pip install -e .` (venv; con `pyproject.toml` nuevo) | OK: instalación editable (código 0); `src/reservas` registrado formalmente en el venv. Artefacto `.egg-info/` ignorado por `.gitignore`. |
+| 30-10 | (A) | `python -m reservas` (sin subcomando, venv) | OK: menú de bienvenida con lista de comandos; código 0 (sin tocar la DB). Nota: con salida redirigida por pipe los acentos renderizan alterados; en consola interactiva correcto (ver lección §7). |
+| 30-10 | (A) | Smoke completo: `reservar` ×2, `disponibilidad`, `cancelar`, `listar` (DB real) | OK: id 1 (MIC-01, Ana Prueba) cancelada conservando historial; id 2 (OSC-01, Beto Prueba) activa; MIC-01 OCUPADA y MIC-02 DISPONIBLE en el mismo intervalo; listar muestra ambos estados. Solicitantes ficticios. |
+| 30-10 | (A) | `pytest tests/ -q` (post-instalación) | OK: `49 passed in 0.32s` — la instalación editable no perturba la suite. |
+| 31-10 | (H) | `pytest .\tests\ -v` (venv, pytest 9.2.0) | OK: `49 passed in 0.38s` — suite completa post-CLI, incluida la config de `pyproject.toml` (`configfile: pyproject.toml` en la salida). Evidencia: `op-interno/Prueba pytest Suite Completa — 31-10-2026.txt` (sin versionar). |
+| 31-10 | (H) | `pytest .\tests\ -v` (pytest global 8.4.2) | OK: `49 passed in 0.34s` — misma suite en otro entorno. Evidencia: mismo archivo. |

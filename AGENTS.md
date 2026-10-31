@@ -60,14 +60,15 @@ Entorno: Windows, PowerShell. Comandos esperados (ajustar si el proyecto los cam
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
 
-# Instalar dependencias
+# Instalar dependencias y el paquete en modo editable
 pip install -r requirements.txt
+pip install -e .
 
 # Ejecutar pruebas
 python -m pytest -v
 
-# Ejecutar la aplicación (completar cuando exista)
-# python -m reservas <subcomando>
+# Ejecutar la aplicación (sin subcomando: menú de bienvenida con la lista de comandos)
+python -m reservas <subcomando>
 ```
 
 La aplicación y los tests **deben funcionar sin cuenta de modelo, sin red y sin credenciales**.
@@ -231,3 +232,4 @@ Este archivo es parte de la evidencia del trabajo (preparación del agente). Cad
 | Fecha | Cambio | Motivo |
 |---|---|---|
 | 2026-10-26 | Se agrega `.engram/config.json` al árbol y una nota sobre la clave de Engram | Tras `git init`, Engram resolvía el proyecto por remoto (`challenge-ia`) en conflicto con la historia existente bajo `tp - challenge`; se fija la clave canónica y se versiona la referencia |
+| 2026-10-30 | Se agrega `pip install -e .` al setup y se completa el comando de la app (`python -m reservas`) | El agente detectó en la prueba de humo que `python -m reservas` fallaba (`No module named reservas`): el src-layout exige instalar el paquete; se suma `pyproject.toml` y la instalación editable (lección en `docs/evidence/leccion-paquete-instalable.md`) |

@@ -11,4 +11,5 @@ data/reservas.db
 # Artifacts locales autogenerados / notas internas del humano
 .atl/
 op-interno/
+*.egg-info/
 

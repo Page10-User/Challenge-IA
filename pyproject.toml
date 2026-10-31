@@ -1,0 +1,16 @@
+# Configuración de empaquetado del paquete `reservas` (src-layout).
+# El paquete vive en src/; esta configuración permite instalarlo en el
+# entorno virtual (pip install -e .) y correr `python -m reservas` sin
+# trucos de PYTHONPATH. Sin dependencias de ejecución (biblioteca estándar).
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reservas"
+version = "0.1.0"
+description = "Sistema de reservas de equipos de laboratorio."
+requires-python = ">=3.12"
+
+[tool.setuptools.packages.find]
+where = ["src"]
