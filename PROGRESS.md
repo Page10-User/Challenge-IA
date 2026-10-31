@@ -40,4 +40,12 @@ Progreso por tarea según `AGENTS.md` §7. Fechas en hora local; hashes nuevos t
 - Archivos tocados: `tests/conftest.py`, `tests/test_rules.py`, `src/reservas/rules.py`.
 - Verificación (comando → resultado): rojo `collected 0 items / 1 error` (ImportError) → verde `31 passed in 0.11s` (pytest 9.2.0, Python 3.12.2). Verificación manual adicional del humano con pytest global 8.4.2: `31 passed in 0.14s`. Detalle en `docs/evidence/verification-log.md`.
 - Pendiente: Fase 4b — service (reservar/cancelar/disponibilidad), repository (SQLite), tests de service/persistence, CLI.
+- Commit: `2f818fe` (feat: reglas de negocio y suite TDD).
+
+## 2026-10-29 — Service, repositorio y persistencia con TDD (Fase 4b)
+- Objetivo / requisito: casos de uso (reservar/cancelar/disponibilidad, consigna §3.3 pruebas 1–4 y 6) y persistencia SQLite que sobrevive a reinicios (prueba 7), sin duplicar reglas (RG-02 en un solo lugar; AGENTS.md §2/§3).
+- Qué se hizo: TDD — tests de service (InMemoryRepository, reloj inyectado D3) y de persistence (SQLite en tmp_path, reinicio simulado con instancia nueva) escritos primero y corridos en **rojo** (`collected 0 items / 2 errors`, ImportError); luego implementación de `models.py` (Reservation, estados activa/cancelada), `repository.py` (Repository + InMemoryRepository + SqliteRepository, fechas como strings 'YYYY-MM-DD HH:MM' D2) y `service.py` (ReservationService). Refactor single-source: `rules` ahora expone `validate_unit` y `validate_time_window`; `validate_reservation` se compone de ambas y el service reutiliza las mismas funciones en disponibilidad y creación. Contratos previos intactos: 31 tests de rules siguen en verde.
+- Archivos tocados: `tests/test_service.py`, `tests/test_persistence.py`, `src/reservas/models.py`, `src/reservas/repository.py`, `src/reservas/service.py`, `src/reservas/rules.py` (refactor sin cambio de comportamiento), `PROGRESS.md`, `docs/evidence/verification-log.md`.
+- Verificación (comando → resultado): rojo `collected 0 items / 2 errors` → verde `42 passed in 0.21s` (pytest 9.2.0, Python 3.12.2). Persistencia confirmada aislada: `2 passed in 0.11s`. Verificación manual del humano en dos entornos: global 8.4.2 `11 passed in 0.16s` y venv 9.2.0 `11 passed in 0.14s` (30-10).
+- Pendiente: Fase 4c — CLI (`cli.py` + `python -m reservas`), manual de persistencia en `docs/evidence/`, README completado.
 - Commit: (pendiente de aprobación del humano).

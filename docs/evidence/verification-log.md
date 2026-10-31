@@ -32,3 +32,8 @@ Consolidado: fechas en hora local del sistema (UTC-3). Los hashes citados corres
 | 29-10 | (A) | `pytest tests/test_rules.py -v` (antes de implementar `src/reservas/rules.py`) | **FALLO esperado (rojo TDD)**: `collected 0 items / 1 error` — ImportError de `reservas.rules` inexistente. |
 | 29-10 | (A) | `pytest tests/test_rules.py -v` (tras implementar `src/reservas/rules.py`) | OK: `31 passed in 0.11s` — RG-01…RG-08, bordes de D0/D4 y errores propios con mensajes claros. |
 | 29-10 | (H) | `pytest .\test_rules.py -v` (pytest global 8.4.2, fuera del venv) | OK: `31 passed in 0.14s` — verificación manual independiente en otro entorno (pinned venv: 9.2.0). Evidencia: `op-interno/Prueba pytest test_rules — 29-10-2026.txt` (sin versionar). |
+| 29-10 | (A) | `pytest tests/test_service.py tests/test_persistence.py -v` (antes de implementar models/repository/service) | **FALLO esperado (rojo TDD)**: `collected 0 items / 2 errors` — ImportError de `reservas.models/service`. |
+| 29-10 | (A) | `pytest tests/ -v` (tras implementar) | OK: `42 passed in 0.21s` (pytest 9.2.0, Python 3.12.2) — 31 rules + 9 service + 2 persistence. |
+| 29-10 | (A) | `pytest tests/test_persistence.py -v` | OK: `2 passed in 0.11s` — prueba 7 del challenge (activas y canceladas sobreviven al reinicio). |
+| 30-10 | (H) | `pytest -v .\test_persistence.py .\test_service.py` (pytest global 8.4.2, fuera del venv) | OK: `11 passed in 0.16s` — verificación manual independiente. Evidencia: `op-interno/Prueba pytest test_persistence & service - 30-10-2026.txt` (sin versionar). |
+| 30-10 | (H) | `pytest -v .\tests\test_persistence.py .\tests\test_service.py` (venv, pytest 9.2.0) | OK: `11 passed in 0.14s` — misma suite en el entorno pinned. Evidencia: mismo archivo. |
