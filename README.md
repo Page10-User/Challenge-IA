@@ -93,4 +93,4 @@ $ python -m reservas listar
 
 - Decisiones técnicas y de dominio con alternativas descartadas: [`DECISIONS.md`](DECISIONS.md) (D0–D4).
 - Episodios de delegación (objetivo → agente → decisión humana → evidencia): `docs/evidence/episode-N.md` cuando ocurran.
-- Evaluación de herramientas: `TOOLING.md` (en elaboración).
+- Evaluación de herramientas (elección, descartes, aciertos y fallos reales): [`TOOLING.md`](TOOLING.md).
