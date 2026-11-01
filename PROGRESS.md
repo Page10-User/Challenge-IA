@@ -66,4 +66,20 @@ Progreso por tarea según `AGENTS.md` §7. Fechas en hora local; hashes nuevos t
 - Verificación (comando → resultado): (A) pasos 1–6 OK (con FALLO honesto del primer intento del paso 6: tabla asumida `reservas`, la real es `reservations`, corregido); doble cancelación rechazada; conteo SQLite coincide. (H) 5/5 criterios en verde (`op-interno/Pruebas manuales/persistence-procedure-manual.md`, sin versionar). `pytest tests/ -q` → `49 passed` post-procedimiento.
 - Pendiente: Fase 5.2 (README por secciones), 5.3 (TOOLING.md), episodios de delegación cuando el humano marque.
 - Nota: la DB real queda con 7 reservas (ids 1–7, ninguna borrada); id 6 (MUL-01/Carla Prueba) e id 7 (MIC-02/Gon-User-Test) en estado `[cancelada]` — evidencia permanente de que cancelar no borra.
+- Commit: `ba7f329` (push `026a236..e34705c`, 01-11, aprobado por el humano).
+
+## 2026-11-01 — README completado por secciones (Fase 5.2)
+- Objetivo / requisito: README como punto de entrada según `challenge-agents.md` §4.2 — cuatro secciones que expliquen por sí solas qué se construyó y cómo se comprobó (§4.4).
+- Qué se hizo: estado actualizado (Fases 1–4 completas, Fase 5 en curso); §1 con resumen de reglas de dominio (5 unidades, D0 semiabiertos con ejemplo, cancelar no borra, D2/D3/D4); §2 reescrita completa: arquitectura en capas (rules única fuente, RG-02), versiones probadas (Python 3.12.2; pytest 9.2.0 venv / 8.4.2 global), instalación con `pip install -e .`, datos con advertencia explícita de que reiniciar NO borra (`docs/evidence/persistence-procedure.md`), comandos reales de la app, ejemplo de entrada/salida con salida real del smoke del 30-10, pendientes y limitaciones (episodios, mini-backlog). §3/§4 intactas hasta que el humano marque episodios y se redacte TOOLING.md. Verificado contra §4.2 líneas 101–108 antes de redactar.
+- Archivos tocados: `README.md`.
+- Verificación (comando → resultado): releo completo tras editar (1 typo corregido); suite `49 passed` vigente; commit aprobado por el humano tras leer el diff.
+- Pendiente: Fase 5.3 (TOOLING.md), episodios de delegación (cuando el humano marque), mini-backlog (en espera de relevación).
+- Commit: `e34705c`.
+
+## 2026-11-01 — Evaluación de herramientas y episodios de delegación (Fase 5.3 + cierre de 5)
+- Objetivo / requisito: `TOOLING.md` (consigna §3.1: entorno/modelo/instrucciones/herramientas con fallos y descartes) y los tres episodios reales de delegación exigidos por §4.3, seleccionados por el humano.
+- Qué se hizo: TOOLING.md creado (harness OpenCode 2.1.4 + GLM-5.3-Flash Free; herramientas con controles; tabla elección vs descartes; 6 fallos reales incluido el patrón de corrupción de texto del agente y el control "releer tras escribir"; bloques de gentle-ai v4.2.0 verificado, declarado como preparación del agente y no del producto). Episodios definidos por el humano: (1) creación y verificación de tests, (2) control de versiones (commit/push; primer push y rebase iniciales reservados al humano), (3) documentación y evidencia. Redactados `docs/evidence/episode-1..3.md` con el formato 1→5 de la consigna, citas verbatim de instrucciones del humano y solo correcciones que ocurrieron (caso #16, falso positivo; paquete no instalable). README §2/§4 actualizados con los enlaces a episodios.
+- Archivos tocados: `TOOLING.md`, `README.md`, `docs/evidence/episode-1.md`, `docs/evidence/episode-2.md`, `docs/evidence/episode-3.md`, `PROGRESS.md`.
+- Verificación (comando → resultado): releo de los 3 episodios + TOOLING tras editar (correcciones de texto del agente: "Corrección" ×4, "manuale"→"manualmente", citas normalizadas); suite `49 passed` vigente; commits con aprobación explícita del humano.
+- Pendiente: mini-backlog (en espera de relevación; D5 requiere DECISIONS + parche de SPEC aprobados).
 - Commit: (pendiente).

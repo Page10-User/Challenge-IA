@@ -78,7 +78,7 @@ $ python -m reservas listar
 
 ### Pendientes y limitaciones
 
-- Episodios de delegación: pendientes de selección humana (`docs/evidence/episode-N.md` en su momento).
+- Episodios de delegación: seleccionados y documentados por el humano — ver §4 y `docs/evidence/episode-1..3.md`.
 - Mini-backlog en espera (post-fases): rechazo de flags duplicadas en la CLI (hoy argparse aplica "gana la última"), tope máximo de duración de reserva (propuesta D5: 6 meses), hint en `listar -h`.
 - Solo interfaz de consola (sin gráficos ni red), por consigna. Solicitantes siempre ficticios.
 
@@ -92,5 +92,5 @@ $ python -m reservas listar
 ## 4. Registro de decisiones y delegación
 
 - Decisiones técnicas y de dominio con alternativas descartadas: [`DECISIONS.md`](DECISIONS.md) (D0–D4).
-- Episodios de delegación (objetivo → agente → decisión humana → evidencia): `docs/evidence/episode-N.md` cuando ocurran.
+- Episodios de delegación (tres reales, seleccionados por el humano): [`docs/evidence/episode-1.md`](docs/evidence/episode-1.md) (pruebas), [`docs/evidence/episode-2.md`](docs/evidence/episode-2.md) (control de versiones), [`docs/evidence/episode-3.md`](docs/evidence/episode-3.md) (documentación).
 - Evaluación de herramientas (elección, descartes, aciertos y fallos reales): [`TOOLING.md`](TOOLING.md).
